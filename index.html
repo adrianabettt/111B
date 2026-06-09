@@ -275,7 +275,7 @@ footer span { color: var(--amarelo); }
 
 <!-- ── CABEÇALHO ── -->
 <div class="topo">
-  <h1>🚦 PLACAS DE TRÂNSITO</h1>
+  <h1>PLACAS DE TRÂNSITO</h1>
   <div class="topo-sub">AS PLACAS TAMBÉM SÃO UMA LINGUAGEM!</div>
 </div>
 
@@ -287,7 +287,7 @@ footer span { color: var(--amarelo); }
 <div class="wrap">
   <div class="card-pergunta" id="card-pergunta">
     <div class="num-pergunta" id="num-pergunta">PERGUNTA 1 DE 10</div>
-    <span class="pergunta-label" id="pergunta-label"> O QUE ESSA PLACA DIZ?</span>
+    <span class="pergunta-label" id="pergunta-label"> O QUE ESSA PLACA PODE INDICAR?</span>
     <div class="placa-img-wrap" id="placa-img-wrap">
       <img id="img-placa" src="" alt="placa de trânsito">
     </div>
@@ -322,23 +322,23 @@ footer span { color: var(--amarelo); }
 ══════════════════════════════════════ */
 const PLACAS = {
   pare:       'https://cdn.awsli.com.br/800x800/2755/2755133/produto/276152106/placa-pare-parada-obrigat-ria-r-1-8mutyhjh17.jpg',
-  proibido:   'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276152241/placa-proibido-estacionar-r-6a-p97aenyqqz.jpg',
+  onibus:      'https://cdn.awsli.com.br/800x800/2755/2755133/produto/276218493/placa-ponto-de-parada-s-14-e4hjqypkrh.jpg',
   velocidade: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd_26FWtqsIV8V4jUK-kAlcmCoTev-twbt9HY0t0y3eGrYmzuporPwoJ77&s=10',
   pedestre:   'https://cdn.awsli.com.br/1012/1012749/produto/37736639/43d20dbeb7.jpg',
-  escola:     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Placa_A-33a.svg/200px-Placa_A-33a.svg.png',
+  escola:     'https://cdn.awsli.com.br/1012/1012749/produto/37737239/c46bc29884.jpg',
   curva:      'https://images.tcdn.com.br/img/img_prod/861159/placa_de_transito_advertencia_a_1a_curva_acentuada_a_esquerda_2791803_1_bb3d08ab95e27146b89c322cfef2f6b4.jpg',
   semaforo:   'https://cdn.awsli.com.br/1012/1012749/produto/37703470/fae7a04d27.jpg',
-  bicicleta:  'https://cdn.awsli.com.br/1012/1012749/produto/37775156/14d0f78d9c.jpg',
-  onibus:     'https://images.tcdn.com.br/img/img_prod/81/placa_ponto_de_parada_onibus_sau_26_resolucao_contran_no_180_65215_1_ce96a1df6ef4c869a3841746681fcd8a.png',
+  buzina:     'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276197455/placa-proibido-estacionar-buzina-ou-sinal-sonoro-r-20-m3st2pd9l1.jpg',
+  animais:    'https://images.tcdn.com.br/img/img_prod/861159/placa_de_transito_advertencia_a_35_animais_5964553_1_7cbd96dca64f6d90f66ace8b12160f44.jpg',
   lombada:    'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276189585/placa-sali-ncia-ou-lombada-com-seta-a-18-pra-esquerda-k864o23ia1.jpg',
 };
 
 const BANCO = [
   {
-    tipo: 'img_para_txt', placa: PLACAS.pare, alt: '',
-    pergunta: 'O QUE ESSA PLACA MANDA FAZER?',
+    tipo: 'img_para_txt', placa: PLACAS.pare, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { txt: 'PARE!',             ok: true  },
+      { txt: 'PARE',             ok: true  },
       { txt: 'SIGA',    ok: false },
       { txt: 'DEVAGAR',        ok: false },
       { txt: 'VIRE',   ok: false },
@@ -347,111 +347,111 @@ const BANCO = [
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.proibido, alt: '',
-    pergunta: 'O QUE ESSA PLACA PROIBE?',
+    tipo: 'img_para_txt', placa: PLACAS.onibus, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { txt: 'PROIBIDO ESTACIONAR',  ok: true  },
-      { txt: 'PROIBIDO VIRAR',       ok: false },
-      { txt: 'PROIBIDO ENTRAR',      ok: false },
-      { txt: 'PROIBIDO ULTRAPASSAR', ok: false },
+      { txt: ' ÔNIBUS',  ok: true  },
+      { txt: ' CARRO',       ok: false },
+      { txt: ' ANDAR',      ok: false },
+      { txt: ' SAIR', ok: false },
     ],
      fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.velocidade, alt: '',
-    pergunta: 'O QUE ESSA PLACA INDICA?',
+    tipo: 'img_para_txt', placa: PLACAS.velocidade, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { txt: 'KM',          ok: false },
-      { txt: 'VELOCIDADE MÁXIMA', ok: true  },
-      { txt: 'NÚMERO DA RUA',              ok: false },
+      { txt: 'PARAR',          ok: false },
+      { txt: 'VELOCIDADE ', ok: true  },
+      { txt: 'RUA',              ok: false },
       { txt: 'DISTÂNCIA',     ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: '',
-    pergunta: 'O QUE ESSA PLACA AVISA',
+    tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: '', //está correto
+    pergunta: '',
     opcoes: [
       { txt: 'CUIDADO',           ok: false },
-      { txt: 'PEDESTRES', ok: true  },
-      { txt: 'PROIBIDO',           ok: false },
-      { txt: 'ESTACIONAMENTO',                ok: false },
+      { txt: 'PEDESTRE',          ok: true  },
+      { txt: 'PARAR',             ok: false },
+      { txt: 'VIRAR',             ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.escola, alt: '',
-    pergunta: 'PORQUE PRECISA IR DEVAGAR AQUI?',
+    tipo: 'img_para_txt', placa: PLACAS.lombada, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { txt: 'HOSPITAL PERTO', ok: false },
-      { txt: 'ESCOLA PERTO',  ok: true  },
-      { txt: 'PARQUE PERTO',   ok: false },
-      { txt: 'SEMÁFORO PERTO', ok: false },
+      { txt: 'CASA', ok: false },
+      { txt: 'LOMBADA',   ok: true  },
+      { txt: 'GATO',   ok: false },
+      { txt: 'CARRO', ok: false },
     ],
  fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.curva, alt: 'Placa de curva acentuada à esquerda',
-    pergunta: 'O que essa placa avisa sobre a estrada?',
+    tipo: 'img_para_txt', placa: PLACAS.curva, alt: '',  //está correto
+    pergunta: '',
     opcoes: [
       { txt: 'RETA',           ok: false },
-      { txt: 'CURVA', ok: true  },
-      { txt: 'ULTRAPASSAR',       ok: false },
-      { txt: 'FIM DA PISTA',           ok: false },
+      { txt: 'CURVA',          ok: true  },
+      { txt: 'ULTRAPASSAR',    ok: false },
+      { txt: 'FIM DA PISTA',   ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.semaforo, alt: 'Placa de semáforo à frente',
-    pergunta: 'O que o motorista vai encontrar mais à frente?',
+    tipo: 'img_para_txt', placa: PLACAS.semaforo, alt: '', //está correto
+    pergunta: '',
     opcoes: [
       { txt: 'LOMBADA',       ok: false },
       { txt: 'SEMÁFORO',       ok: true  },
-      { txt: 'CURVA', ok: false },
+      { txt: 'CURVA',        ok: false },
       { txt: 'ESCOLA',        ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.bicicleta, alt: '',
-    pergunta: 'O que essa placa proíbe nesta via?',
+    tipo: 'img_para_txt', placa: PLACAS.buzina, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { txt: 'CARROS',     ok: false },
-      { txt: 'PEDESTRES',  ok: false },
-      { txt: 'BICICLETAS', ok: true  },
-      { txt: 'MOTOS',      ok: false },
+      { txt: 'NÃO SAIR',     ok: false },
+      { txt: 'NÃO PASSAR',  ok: false },
+      { txt: 'NÃO BUZINAR', ok: true  },
+      { txt: 'NÃO CORRER',      ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'txt_para_img', placa: null, alt: '',
-    pergunta: '🔍 Qual dessas é a placa de PARE?',
+    tipo: 'img_para_txt', placa: PLACAS.animais, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { img: PLACAS.pare,       alt: 'PARE',             ok: true  },
-      { img: PLACAS.proibido,   alt: ' PEDESTRE.',  ok: false },
-      { img: PLACAS.velocidade, alt: 'VELOCIDADE',  ok: false },
-      { img: PLACAS.lombada,    alt: 'LOMBADA',          ok: false },
+      { txt: 'CARRO',     ok: false },
+      { txt: 'ÔNIBUS',  ok: false },
+      { txt: 'ANIMAIS', ok: true  },
+      { txt: 'OBJETOS',      ok: false },
     ],
-   fbOk: '✅ CERTO!',
+    fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
-  {
-    tipo: 'txt_para_img', placa: null, alt: '',
-    pergunta: '🔍 Qual placa avisa que tem uma ESCOLA perto?',
+   {
+    tipo: 'img_para_txt', placa: PLACAS.escola, alt: '', //está correto
+    pergunta: '',
     opcoes: [
-      { img: PLACAS.pedestre, alt: 'PEDESTRE', ok: false },
-      { img: PLACAS.curva,    alt: 'CURVA',           ok: false },
-      { img: PLACAS.escola,   alt: 'ESCOLA',    ok: true  },
-      { img: PLACAS.semaforo, alt: 'SEMÁFORO',        ok: false },
+      { txt: 'CASA',     ok: false },
+      { txt: 'PRAÇA',  ok: false },
+      { txt: 'ESCOLA', ok: true  },
+      { txt: 'IGREJA',      ok: false },
     ],
- fbOk: '✅ CERTO!',
+    fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
   },
 ];
@@ -501,7 +501,7 @@ function renderPergunta() {
   const label    = document.getElementById('pergunta-label');
 
   if (q.tipo === 'img_para_txt') {
-    label.textContent    = '🚦 O QUE ESSA PLACA DIZ?';
+    label.textContent    = 'ESSA PLACA INDICA';
     wrap.style.display   = 'flex';
     imgPlaca.src         = q.placa;
     imgPlaca.alt         = q.alt;
