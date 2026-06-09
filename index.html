@@ -509,7 +509,10 @@ function renderPergunta() {
   fb.className = 'feedback-box';
   fb.textContent = '';
 
-  document.getElementById('btn-proxima').className = 'btn-proxima';
+  const btnAntigo = document.getElementById('btn-proxima');
+  const btnNovo = btnAntigo.cloneNode(true);
+  btnAntigo.parentNode.replaceChild(btnNovo, btnAntigo);
+  btnNovo.className = 'btn-proxima';
 
   const imgPlaca = document.getElementById('img-placa');
   const pTexto   = document.getElementById('pergunta-texto');
@@ -591,14 +594,16 @@ function responder(el, op, q) {
   }
 
   const btn = document.getElementById('btn-proxima');
+  const novoBtn = btn.cloneNode(true);
+  btn.parentNode.replaceChild(novoBtn, btn);
   if (atual + 1 >= perguntas.length) {
-    btn.textContent = '🏁 VER MEU RESULTADO!';
-    btn.onclick = mostrarNota;
+    novoBtn.textContent = '🏁 VER MEU RESULTADO!';
+    novoBtn.addEventListener('click', mostrarNota);
   } else {
-    btn.textContent = 'PRÓXIMA ➜';
-    btn.onclick = proxima;
+    novoBtn.textContent = 'PRÓXIMA ➜';
+    novoBtn.addEventListener('click', proxima);
   }
-  btn.className = 'btn-proxima show';
+  novoBtn.className = 'btn-proxima show';
 }
 
 function adicionarBadge(el, ok) {
@@ -620,7 +625,7 @@ function proxima() {
 }
 
 function mostrarNota() {
-  const nota = Math.round((certos / perguntas.length) * 10);
+  const nota = certos; // 10 perguntas → cada acerto vale 1 ponto, nota de 0 a 10
   const cfgs = [
     { min:10,max:10, e:'⭐⭐⭐⭐⭐', t:'PERFEITO! 🏆',   bg:'#064E3B', br:'#10B981', cb:'#065F46', nc:'#6EE7B7', bb:'#10B981', bs:'#047857', mc:'#A7F3D0', m:'Você acertou tudo! Já conhece as placas como um especialista!' },
     { min:8, max:9,  e:'⭐⭐⭐⭐',   t:'MUITO BEM! 🎉',  bg:'#1E3A5F', br:'#1A7ABF', cb:'#0D5A94', nc:'#BAE6FD', bb:'#1A7ABF', bs:'#0D5A94', mc:'#BAE6FD', m:'Quase tudo certo! Você entendeu bem as placas!' },
