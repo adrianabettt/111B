@@ -252,8 +252,8 @@ footer span { color: var(--amarelo); }
 <div class="wrap">
   <div class="card-pergunta" id="card-pergunta">
     <div class="num-pergunta" id="num-pergunta">PERGUNTA 1 DE 10</div>
-    <span class="pergunta-label">🚦 O QUE ESSA PLACA DIZ?</span>
-    <div class="placa-img-wrap">
+    <span class="pergunta-label" id="pergunta-label">🚦 O QUE ESSA PLACA DIZ?</span>
+    <div class="placa-img-wrap" id="placa-img-wrap">
       <img id="img-placa" src="" alt="placa de trânsito">
     </div>
     <div class="pergunta-texto" id="pergunta-texto"></div>
@@ -281,14 +281,23 @@ footer span { color: var(--amarelo); }
 
 <script>
 /*
-  BANCO DE PLACAS
-  Imagens via Wikimedia Commons (domínio público / licença livre)
+  BANCO DE PLACAS — links originais mantidos sem alteração.
+
+  Mapeamento real de cada URL:
+    pare       → placa PARE (octogonal vermelha)
+    proibido   → placa PROIBIDO ESTACIONAR (círculo vermelho com "E" cortado)
+    velocidade → placa VELOCIDADE MÁXIMA 40 km/h
+    pedestre   → placa de PASSAGEM DE PEDESTRES (faixa de zebra)
+    escola     → placa de ÁREA ESCOLAR (triângulo, duas crianças)
+    curva      → placa CURVA ACENTUADA À ESQUERDA (triângulo amarelo)
+    semaforo   → placa SEMÁFORO À FRENTE (triângulo com semáforo)
+    bicicleta  → placa PROIBIDO CIRCULAR DE BICICLETA
+    onibus     → placa PONTO DE PARADA DE ÔNIBUS
+    lombada    → placa SALIÊNCIA OU LOMBADA
 
   tipo pergunta:
-    'img_para_txt' → mostra imagem da placa, resposta é texto (palavras)
+    'img_para_txt' → mostra imagem da placa, resposta é texto
     'txt_para_img' → mostra texto, resposta é escolher a imagem correta
-
-  URLs: placas brasileiras reais do Wikimedia
 */
 
 const PLACAS = {
@@ -304,147 +313,171 @@ const PLACAS = {
   lombada:    'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276189585/placa-sali-ncia-ou-lombada-com-seta-a-18-pra-esquerda-k864o23ia1.jpg',
 };
 
+/*
+  BANCO CORRIGIDO:
+  Cada entrada foi revisada para garantir que a imagem mostrada e as
+  opções de resposta sejam coerentes entre si.
+*/
 const BANCO = [
+
+  /* 1 ─ PARE */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.pare,
     alt: 'Placa PARE vermelha octogonal',
-    pergunta: '',
+    pergunta: 'O que essa placa manda fazer?',
     opcoes: [
-      { txt: 'PARE', ok: true  },
-      { txt: 'DEVAGAR', ok: false },
-      { txt: 'SIGA', ok: false },
-      { txt: 'PROIBIDO', ok: false },
+      { txt: 'PARE!',        ok: true  },
+      { txt: 'SIGA EM FRENTE', ok: false },
+      { txt: 'VÁ DEVAGAR',   ok: false },
+      { txt: 'DOBRE À DIREITA', ok: false },
     ],
-    fbOk: '✅ Certo! A placa PARE manda parar o carro!',
-    fbNo: '❌ Errou! Essa é a placa PARE — o motorista precisa parar.',
+    fbOk: '✅ Certo! A placa PARE manda o motorista parar completamente antes de cruzar!',
+    fbNo: '❌ Errou! Essa é a placa PARE — o motorista precisa parar completamente.',
   },
+
+  /* 2 ─ PROIBIDO ESTACIONAR */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.proibido,
-    alt: 'Placa de proibido entrar',
-    pergunta: '',
+    alt: 'Placa proibido estacionar',
+    pergunta: 'O que essa placa proíbe?',
     opcoes: [
-      { txt: 'PODE ENTRAR', ok: false },
-      { txt: 'PROIBIDO ENTRAR', ok: true  },
-      { txt: 'DEVAGAR', ok: false },
-      { txt: 'PARE', ok: false },
+      { txt: 'PROIBIDO ESTACIONAR', ok: true  },
+      { txt: 'PROIBIDO VIRAR',      ok: false },
+      { txt: 'PROIBIDO ENTRAR',     ok: false },
+      { txt: 'PROIBIDO ULTRAPASSAR', ok: false },
     ],
-    fbOk: '✅ Isso! Essa placa significa PROIBIDO ENTRAR!',
-    fbNo: '❌ Não! Essa placa significa PROIBIDO ENTRAR.',
+    fbOk: '✅ Isso! Essa placa significa PROIBIDO ESTACIONAR neste local!',
+    fbNo: '❌ Não! Essa placa significa PROIBIDO ESTACIONAR.',
   },
+
+  /* 3 ─ VELOCIDADE MÁXIMA */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.velocidade,
-    alt: 'Placa de velocidade máxima 40',
-    pergunta: '',
+    alt: 'Placa de velocidade máxima 40 km/h',
+    pergunta: 'O que o número nessa placa indica?',
     opcoes: [
-      { txt: 'PODE CORRER', ok: false },
-      { txt: 'VÁ RÁPIDO', ok: false },
-      { txt: 'MÁXIMO 40 KM/H', ok: true  },
-      { txt: 'PARE AQUI', ok: false },
+      { txt: 'VELOCIDADE MÍNIMA',   ok: false },
+      { txt: 'VELOCIDADE MÁXIMA\n40 KM/H', ok: true  },
+      { txt: 'NÚMERO DA RUA',       ok: false },
+      { txt: 'DISTÂNCIA ATÉ A CIDADE', ok: false },
     ],
-    fbOk: '✅ Perfeito! O número na placa mostra a velocidade máxima permitida!',
+    fbOk: '✅ Perfeito! O número na placa mostra a velocidade máxima permitida neste trecho!',
     fbNo: '❌ Errou! Essa placa diz que o limite de velocidade é 40 km/h.',
   },
+
+  /* 4 ─ PASSAGEM DE PEDESTRES */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.pedestre,
-    alt: 'Placa de pedestres',
-    pergunta: '',
+    alt: 'Placa de passagem de pedestres',
+    pergunta: 'O que essa placa avisa ao motorista?',
     opcoes: [
-      { txt: 'CUIDADO COM BICICLETA', ok: false },
-      { txt: 'CUIDADO! TEM GENTE ATRAVESSANDO', ok: true  },
+      { txt: 'CUIDADO COM ANIMAIS', ok: false },
+      { txt: 'FAIXA DE PEDESTRES\nà frente!', ok: true  },
       { txt: 'PROIBIDO ANDAR A PÉ', ok: false },
-      { txt: 'ESTACIONAMENTO', ok: false },
+      { txt: 'ESTACIONAMENTO',      ok: false },
     ],
-    fbOk: '✅ Isso mesmo! Tem pessoas atravessando a rua aqui!',
-    fbNo: '❌ Essa placa avisa que há pedestres atravessando a rua.',
+    fbOk: '✅ Isso mesmo! Essa placa avisa que há uma faixa de pedestres à frente — cuidado!',
+    fbNo: '❌ Essa placa avisa que há uma faixa de pedestres à frente.',
   },
+
+  /* 5 ─ ÁREA ESCOLAR */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.escola,
-    alt: 'Placa de área escolar',
-    pergunta: '',
+    alt: 'Placa de área escolar — crianças',
+    pergunta: 'Por que os motoristas precisam ir devagar aqui?',
     opcoes: [
-      { txt: 'SUPERMERCADO PRÓXIMO', ok: false },
-      { txt: 'HOSPITAL PERTO', ok: false },
-      { txt: 'ESCOLA PERTO — DEVAGAR!', ok: true  },
-      { txt: 'PARQUE INFANTIL', ok: false },
+      { txt: 'TEM UM HOSPITAL PERTO', ok: false },
+      { txt: 'TEM UMA ESCOLA PERTO',  ok: true  },
+      { txt: 'TEM UM PARQUE PERTO',   ok: false },
+      { txt: 'TEM UM SEMÁFORO PERTO', ok: false },
     ],
-    fbOk: '✅ Certo! Tem uma escola perto — os motoristas precisam ir devagar!',
-    fbNo: '❌ Essa placa indica escola próxima — é preciso ir devagar!',
+    fbOk: '✅ Certo! Tem uma escola perto — os motoristas devem reduzir a velocidade!',
+    fbNo: '❌ Essa placa indica que há uma escola próxima — é preciso ir devagar!',
   },
+
+  /* 6 ─ CURVA ACENTUADA */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.curva,
-    alt: 'Placa de curva à esquerda',
-    pergunta: '',
+    alt: 'Placa de curva acentuada à esquerda',
+    pergunta: 'O que essa placa avisa sobre a estrada?',
     opcoes: [
-      { txt: 'ESTRADA RETA', ok: false },
-      { txt: 'TEM UMA CURVA NA ESTRADA', ok: true  },
-      { txt: 'PODE ULTRAPASSAR', ok: false },
-      { txt: 'ESTACIONAMENTO', ok: false },
+      { txt: 'ESTRADA RETA',           ok: false },
+      { txt: 'TEM UMA CURVA À FRENTE', ok: true  },
+      { txt: 'PODE ULTRAPASSAR',       ok: false },
+      { txt: 'FIM DA PISTA',           ok: false },
     ],
-    fbOk: '✅ Isso! A placa avisa que tem uma curva à frente!',
-    fbNo: '❌ Essa placa avisa que tem uma curva na estrada.',
+    fbOk: '✅ Isso! A placa avisa que tem uma curva acentuada à frente — cuidado!',
+    fbNo: '❌ Essa placa avisa que tem uma curva acentuada na estrada.',
   },
+
+  /* 7 ─ SEMÁFORO À FRENTE */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.semaforo,
     alt: 'Placa de semáforo à frente',
-    pergunta: '',
+    pergunta: 'O que o motorista vai encontrar mais à frente?',
     opcoes: [
-      { txt: 'TEM UM SEMÁFORO À FRENTE', ok: true  },
-      { txt: 'PROIBIDO PARAR', ok: false },
-      { txt: 'ESTRADA SEM SAÍDA', ok: false },
-      { txt: 'PARE E OLHE', ok: false },
+      { txt: 'UMA LOMBADA',        ok: false },
+      { txt: 'UM SEMÁFORO',        ok: true  },
+      { txt: 'UMA CURVA FECHADA',  ok: false },
+      { txt: 'UMA ESCOLA',         ok: false },
     ],
     fbOk: '✅ Perfeito! Essa placa avisa que tem um semáforo mais à frente!',
     fbNo: '❌ Essa placa avisa que há um semáforo à frente.',
   },
+
+  /* 8 ─ PROIBIDO BICICLETA */
   {
     tipo: 'img_para_txt',
     placa: PLACAS.bicicleta,
-    alt: 'Placa de proibido bicicleta',
-    pergunta: '',
+    alt: 'Placa proibido circular de bicicleta',
+    pergunta: 'O que essa placa proíbe nesta via?',
     opcoes: [
-      { txt: 'CICLOVIA', ok: false },
-      { txt: 'BICICLETAS PODEM ENTRAR', ok: false },
-      { txt: 'PROIBIDO BICICLETAS', ok: true  },
-      { txt: 'CUIDADO COM CICLISTAS', ok: false },
+      { txt: 'CARROS',              ok: false },
+      { txt: 'PEDESTRES',           ok: false },
+      { txt: 'BICICLETAS',          ok: true  },
+      { txt: 'MOTOS',               ok: false },
     ],
-    fbOk: '✅ Certo! Nessa rua bicicletas não podem entrar!',
-    fbNo: '❌ Essa placa significa proibido entrada de bicicletas.',
+    fbOk: '✅ Certo! Nessa via bicicletas não podem circular!',
+    fbNo: '❌ Essa placa significa proibido circular de bicicleta nesta via.',
   },
-  // Tipo: mostrar texto → escolher imagem correta
+
+  /* 9 ─ txt→img: qual é a placa de PARE? */
   {
     tipo: 'txt_para_img',
     placa: null,
     alt: '',
-    pergunta: 'Qual é a placa de PARE?',
+    pergunta: '🔍 Qual dessas é a placa de PARE?',
     opcoes: [
-      { img: PLACAS.pare,       alt: 'Placa pare',         ok: true  },
-      { img: PLACAS.proibido,   alt: 'Placa proibido',     ok: false },
-      { img: PLACAS.velocidade, alt: 'Placa velocidade',   ok: false },
-      { img: PLACAS.lombada,    alt: 'Placa lombada único', ok: false },
+      { img: PLACAS.pare,       alt: 'Placa octogonal PARE',      ok: true  },
+      { img: PLACAS.proibido,   alt: 'Placa proibido estacionar', ok: false },
+      { img: PLACAS.velocidade, alt: 'Placa velocidade máxima',   ok: false },
+      { img: PLACAS.lombada,    alt: 'Placa lombada',             ok: false },
     ],
-    fbOk: '✅ Isso mesmo! A placa vermelha octogonal é o PARE!',
-    fbNo: '❌ A placa de PARE é a vermelha em formato octogonal!',
+    fbOk: '✅ Isso mesmo! A placa vermelha octogonal (8 lados) é o PARE!',
+    fbNo: '❌ A placa de PARE é a vermelha com formato de oito lados (octógono)!',
   },
+
+  /* 10 ─ txt→img: qual avisa sobre ESCOLA? */
   {
     tipo: 'txt_para_img',
     placa: null,
     alt: '',
-    pergunta: 'Qual placa avisa que tem uma ESCOLA perto?',
+    pergunta: '🔍 Qual placa avisa que tem uma ESCOLA perto?',
     opcoes: [
-      { img: PLACAS.pedestre, alt: 'Placa pedestre', ok: false },
-      { img: PLACAS.curva,    alt: 'Placa curva',    ok: false },
-      { img: PLACAS.escola,   alt: 'Placa escola',   ok: true  },
-      { img: PLACAS.semaforo, alt: 'Placa semáforo', ok: false },
+      { img: PLACAS.pedestre, alt: 'Placa faixa de pedestres', ok: false },
+      { img: PLACAS.curva,    alt: 'Placa curva',              ok: false },
+      { img: PLACAS.escola,   alt: 'Placa área escolar',       ok: true  },
+      { img: PLACAS.semaforo, alt: 'Placa semáforo',           ok: false },
     ],
-    fbOk: '✅ Perfeito! Essa placa avisa que tem uma escola perto!',
-    fbNo: '❌ A placa de escola mostra duas crianças andando.',
+    fbOk: '✅ Perfeito! Essa placa mostra duas crianças e avisa que tem uma escola perto!',
+    fbNo: '❌ A placa de escola mostra duas crianças caminhando — é um triângulo amarelo.',
   },
 ];
 
@@ -452,9 +485,9 @@ let perguntas = [], atual = 0, certos = 0, erros = 0, travado = false;
 
 function embaralhar(a) {
   const r = [...a];
-  for (let i = r.length-1; i > 0; i--) {
-    const j = Math.floor(Math.random()*(i+1));
-    [r[i],r[j]] = [r[j],r[i]];
+  for (let i = r.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [r[i], r[j]] = [r[j], r[i]];
   }
   return r;
 }
@@ -469,23 +502,30 @@ function renderPergunta() {
   const q = perguntas[atual];
   travado = false;
 
-  document.getElementById('num-pergunta').textContent = `PERGUNTA ${atual+1} DE ${perguntas.length}`;
-  document.getElementById('feedback-box').className = 'feedback-box';
-  document.getElementById('feedback-box').textContent = '';
+  document.getElementById('num-pergunta').textContent =
+    `PERGUNTA ${atual + 1} DE ${perguntas.length}`;
+
+  const fb = document.getElementById('feedback-box');
+  fb.className = 'feedback-box';
+  fb.textContent = '';
+
   document.getElementById('btn-proxima').className = 'btn-proxima';
 
   const imgPlaca = document.getElementById('img-placa');
   const pTexto   = document.getElementById('pergunta-texto');
-  const wrap     = document.querySelector('.placa-img-wrap');
+  const wrap     = document.getElementById('placa-img-wrap');
+  const label    = document.getElementById('pergunta-label');
 
   if (q.tipo === 'img_para_txt') {
-    // Mostra imagem da placa no topo
+    /* mostra imagem da placa + pergunta em texto */
+    label.textContent = '🚦 O QUE ESSA PLACA DIZ?';
     wrap.style.display = 'flex';
     imgPlaca.src = q.placa;
     imgPlaca.alt = q.alt;
-    pTexto.textContent = 'O que essa placa quer dizer?';
+    pTexto.textContent = q.pergunta;
   } else {
-    // Mostra texto no topo, sem imagem
+    /* mostra apenas a pergunta em texto; respostas são imagens */
+    label.textContent = '🔍 ENCONTRE A PLACA CERTA!';
     wrap.style.display = 'none';
     imgPlaca.src = '';
     pTexto.textContent = q.pergunta;
@@ -499,13 +539,13 @@ function renderPergunta() {
     div.className = 'opcao';
 
     if (q.tipo === 'img_para_txt') {
-      // Resposta: texto grande
+      /* resposta = texto */
       const span = document.createElement('span');
       span.className = 'opcao-txt-grande';
       span.textContent = op.txt;
       div.appendChild(span);
     } else {
-      // Resposta: imagem da placa
+      /* resposta = imagem da placa */
       const img = document.createElement('img');
       img.src = op.img;
       img.alt = op.alt;
@@ -527,31 +567,25 @@ function responder(el, op, q) {
   if (op.ok) {
     certos++;
     el.classList.add('certa');
-    const b = document.createElement('div');
-    b.className = 'opcao-badge badge-ok'; b.textContent = '✓';
-    el.appendChild(b);
+    adicionarBadge(el, true);
     fb.textContent = q.fbOk;
     fb.className = 'feedback-box show ok';
   } else {
     erros++;
     el.classList.add('errada');
-    const b = document.createElement('div');
-    b.className = 'opcao-badge badge-no'; b.textContent = '✗';
-    el.appendChild(b);
+    adicionarBadge(el, false);
+
+    /* destaca a resposta correta */
     document.querySelectorAll('.opcao').forEach(o => {
-      // Para img_para_txt: comparar texto
       if (q.tipo === 'img_para_txt') {
         const t = o.querySelector('.opcao-txt-grande');
-        if (t && q.opcoes.find(x => x.ok && x.txt === t.textContent)) {
-          marcarCerta(o);
-        }
+        if (t && q.opcoes.find(x => x.ok && x.txt === t.textContent)) marcarCerta(o);
       } else {
         const img = o.querySelector('img');
-        if (img && q.opcoes.find(x => x.ok && x.img === img.src)) {
-          marcarCerta(o);
-        }
+        if (img && q.opcoes.find(x => x.ok && x.img === img.src)) marcarCerta(o);
       }
     });
+
     fb.textContent = q.fbNo;
     fb.className = 'feedback-box show no';
   }
@@ -567,17 +601,22 @@ function responder(el, op, q) {
   btn.className = 'btn-proxima show';
 }
 
+function adicionarBadge(el, ok) {
+  const b = document.createElement('div');
+  b.className = 'opcao-badge ' + (ok ? 'badge-ok' : 'badge-no');
+  b.textContent = ok ? '✓' : '✗';
+  el.appendChild(b);
+}
+
 function marcarCerta(o) {
   o.classList.add('certa');
-  const b2 = document.createElement('div');
-  b2.className = 'opcao-badge badge-ok'; b2.textContent = '✓';
-  o.appendChild(b2);
+  adicionarBadge(o, true);
 }
 
 function proxima() {
   atual++;
   renderPergunta();
-  window.scrollTo({ top:0, behavior:'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 function mostrarNota() {
@@ -596,8 +635,8 @@ function mostrarNota() {
 
   box.style.cssText  = `background:${cfg.bg};border-radius:32px;padding:34px 26px;text-align:center;max-width:350px;width:100%;animation:pop .5s cubic-bezier(.4,2,.6,1);border:5px solid ${cfg.br};`;
   circ.style.cssText = `width:130px;height:130px;border-radius:50%;margin:10px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;border:6px solid ${cfg.br};background:${cfg.cb};`;
-  nNum.style.color = cfg.nc;
-  nNum.textContent = nota;
+  nNum.style.color   = cfg.nc;
+  nNum.textContent   = nota;
 
   document.getElementById('nota-estrelas').textContent = cfg.e;
   const tEl = document.getElementById('nota-titulo');
@@ -625,15 +664,15 @@ function confetti() {
     setTimeout(() => {
       const c = document.createElement('div');
       c.className = 'cp';
-      c.style.left = Math.random()*100+'vw';
-      c.style.background = cores[Math.floor(Math.random()*cores.length)];
-      c.style.width  = (Math.random()*8+5)+'px';
-      c.style.height = (Math.random()*10+7)+'px';
-      c.style.animationDuration = (Math.random()*1.5+1.5)+'s';
-      c.style.borderRadius = Math.random()>.5?'50%':'3px';
+      c.style.left             = Math.random() * 100 + 'vw';
+      c.style.background       = cores[Math.floor(Math.random() * cores.length)];
+      c.style.width            = (Math.random() * 8 + 5) + 'px';
+      c.style.height           = (Math.random() * 10 + 7) + 'px';
+      c.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
+      c.style.borderRadius     = Math.random() > .5 ? '50%' : '3px';
       document.body.appendChild(c);
-      setTimeout(()=>c.remove(), 3000);
-    }, i*45);
+      setTimeout(() => c.remove(), 3000);
+    }, i * 45);
   }
 }
 
