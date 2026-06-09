@@ -399,7 +399,7 @@ const BANCO = [
     pergunta: 'O que essa placa avisa sobre a estrada?',
     opcoes: [
       { txt: 'RETA',           ok: false },
-      { txt: 'CURVA À FRENTE', ok: true  },
+      { txt: 'CURVA', ok: true  },
       { txt: 'ULTRAPASSAR',       ok: false },
       { txt: 'FIM DA PISTA',           ok: false },
     ],
@@ -410,10 +410,10 @@ const BANCO = [
     tipo: 'img_para_txt', placa: PLACAS.semaforo, alt: 'Placa de semáforo à frente',
     pergunta: 'O que o motorista vai encontrar mais à frente?',
     opcoes: [
-      { txt: 'UMA LOMBADA',       ok: false },
-      { txt: 'UM SEMÁFORO',       ok: true  },
-      { txt: 'UMA CURVA FECHADA', ok: false },
-      { txt: 'UMA ESCOLA',        ok: false },
+      { txt: 'LOMBADA',       ok: false },
+      { txt: 'SEMÁFORO',       ok: true  },
+      { txt: 'CURVA', ok: false },
+      { txt: 'ESCOLA',        ok: false },
     ],
     fbOk: '✅ CERTO!',
     fbNo:  '❌ ERROU! ',
@@ -447,7 +447,7 @@ const BANCO = [
     pergunta: '🔍 Qual placa avisa que tem uma ESCOLA perto?',
     opcoes: [
       { img: PLACAS.pedestre, alt: 'PEDESTRE', ok: false },
-      { img: PLACAS.curva,    alt: 'CURCA',           ok: false },
+      { img: PLACAS.curva,    alt: 'CURVA',           ok: false },
       { img: PLACAS.escola,   alt: 'ESCOLA',    ok: true  },
       { img: PLACAS.semaforo, alt: 'SEMÁFORO',        ok: false },
     ],
