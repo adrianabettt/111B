@@ -276,11 +276,11 @@ footer span { color: var(--amarelo); }
 <!-- ── CABEÇALHO ── -->
 <div class="topo">
   <h1>🚦 PLACAS DE TRÂNSITO</h1>
-  <div class="topo-sub">As placas também são uma linguagem!</div>
+  <div class="topo-sub">AS PLACAS TAMBÉM SÃO UMA LINGUAGEM!</div>
 </div>
 
 <div class="conceito">
-  <p>🚗 As placas de trânsito mandam mensagens sem usar palavras! Você sabe o que elas dizem?</p>
+  <p>🚗 AS PLACAS DE TRÂNSITO MANDA MENSAGENS SEM USAR PALAVRAS, VOCÊ SABE O QUE ELAS DIZEM?</p>
 </div>
 
 <!-- ── JOGO ── -->
@@ -335,52 +335,52 @@ const PLACAS = {
 
 const BANCO = [
   {
-    tipo: 'img_para_txt', placa: PLACAS.pare, alt: 'Placa PARE vermelha octogonal',
-    pergunta: 'O que essa placa manda fazer?',
+    tipo: 'img_para_txt', placa: PLACAS.pare, alt: '',
+    pergunta: 'O QUE ESSA PLACA MANDA FAZER?',
     opcoes: [
       { txt: 'PARE!',             ok: true  },
-      { txt: 'SIGA EM FRENTE',    ok: false },
-      { txt: 'VÁ DEVAGAR',        ok: false },
-      { txt: 'DOBRE À DIREITA',   ok: false },
+      { txt: 'SIGA',    ok: false },
+      { txt: 'DEVAGAR',        ok: false },
+      { txt: 'VIRE',   ok: false },
     ],
-    fbOk: '✅ Certo! A placa PARE manda o motorista parar completamente antes de cruzar!',
-    fbNo:  '❌ Errou! Essa é a placa PARE — o motorista precisa parar completamente.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.proibido, alt: 'Placa proibido estacionar',
-    pergunta: 'O que essa placa proíbe?',
+    tipo: 'img_para_txt', placa: PLACAS.proibido, alt: '',
+    pergunta: 'O QUE ESSA PLACA PROIBE?',
     opcoes: [
       { txt: 'PROIBIDO ESTACIONAR',  ok: true  },
       { txt: 'PROIBIDO VIRAR',       ok: false },
       { txt: 'PROIBIDO ENTRAR',      ok: false },
       { txt: 'PROIBIDO ULTRAPASSAR', ok: false },
     ],
-    fbOk: '✅ Isso! Essa placa significa PROIBIDO ESTACIONAR neste local!',
-    fbNo:  '❌ Não! Essa placa significa PROIBIDO ESTACIONAR.',
+     fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.velocidade, alt: 'Placa de velocidade máxima 40 km/h',
-    pergunta: 'O que o número nessa placa indica?',
+    tipo: 'img_para_txt', placa: PLACAS.velocidade, alt: '',
+    pergunta: 'O QUE ESSA PLACA INDICA?',
     opcoes: [
-      { txt: 'VELOCIDADE MÍNIMA',          ok: false },
-      { txt: 'VELOCIDADE MÁXIMA\n40 KM/H', ok: true  },
+      { txt: 'KM',          ok: false },
+      { txt: 'VELOCIDADE MÁXIMA', ok: true  },
       { txt: 'NÚMERO DA RUA',              ok: false },
-      { txt: 'DISTÂNCIA ATÉ A CIDADE',     ok: false },
+      { txt: 'DISTÂNCIA',     ok: false },
     ],
-    fbOk: '✅ Perfeito! O número na placa mostra a velocidade máxima permitida neste trecho!',
-    fbNo:  '❌ Errou! Essa placa diz que o limite de velocidade é 40 km/h.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: 'Placa de passagem de pedestres',
-    pergunta: 'O que essa placa avisa ao motorista?',
+    tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: '',
+    pergunta: 'O QUE ESSA PLACA AVISA',
     opcoes: [
       { txt: 'CUIDADO COM ANIMAIS',           ok: false },
-      { txt: 'FAIXA DE PEDESTRES\nà frente!', ok: true  },
-      { txt: 'PROIBIDO ANDAR A PÉ',           ok: false },
+      { txt: 'FAIXA DE PEDESTRES', ok: true  },
+      { txt: 'PROIBIDO',           ok: false },
       { txt: 'ESTACIONAMENTO',                ok: false },
     ],
-    fbOk: '✅ Isso mesmo! Essa placa avisa que há uma faixa de pedestres à frente!',
-    fbNo:  '❌ Essa placa avisa que há uma faixa de pedestres à frente.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
     tipo: 'img_para_txt', placa: PLACAS.escola, alt: 'Placa de área escolar',
