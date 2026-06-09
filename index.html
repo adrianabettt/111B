@@ -30,6 +30,7 @@ body {
   flex-direction: column;
 }
 
+/* ── TOPO ── */
 .topo {
   background: #1A1A2E;
   box-shadow: 0 6px 0 #000;
@@ -45,11 +46,12 @@ body {
 }
 .topo-sub { font-size: 13px; color: #aaa; font-weight: 700; margin-top: 3px; }
 
+/* ── CONCEITO ── */
 .conceito {
   background: var(--amarelo);
   border-bottom: 4px solid var(--amar-esc);
   padding: 12px 20px;
-  display: flex; align-items: center; justify-content: center; gap: 10px;
+  display: flex; align-items: center; justify-content: center;
   text-align: center;
 }
 .conceito p {
@@ -57,6 +59,7 @@ body {
   font-size: 14px; font-weight: 900; color: #5A3A00; line-height: 1.4;
 }
 
+/* ── CONTEÚDO ── */
 .wrap {
   max-width: 560px; width: 100%;
   margin: 0 auto;
@@ -84,23 +87,17 @@ body {
   font-size: 12px; font-weight: 900;
   font-family: 'Baloo 2', cursive;
   border-radius: 20px;
-  padding: 4px 14px;
-  margin-bottom: 16px;
-  letter-spacing: 1px;
-  border: 2px solid;
+  padding: 4px 14px; margin-bottom: 16px;
+  letter-spacing: 1px; border: 2px solid;
   background: #FEF3C7; color: #92400E; border-color: #FDE68A;
 }
-
-/* Imagem da placa */
 .placa-img-wrap {
   display: flex; align-items: center; justify-content: center;
   margin: 0 0 6px;
 }
 .placa-img-wrap img {
-  width: 160px;
-  height: 160px;
-  object-fit: contain;
-  border-radius: 12px;
+  width: 160px; height: 160px;
+  object-fit: contain; border-radius: 12px;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.18));
 }
 .pergunta-texto {
@@ -109,6 +106,7 @@ body {
   color: #555; margin-top: 8px;
 }
 
+/* ── FEEDBACK ── */
 .feedback-box {
   background: #fff; border-radius: 16px;
   padding: 10px 14px; margin-top: 12px;
@@ -118,32 +116,25 @@ body {
 .feedback-box.show { display: block; animation: aparecer .3s ease; }
 .feedback-box.ok   { border-color: var(--verde); color: #065F46; background: #ECFDF5; }
 .feedback-box.no   { border-color: var(--rosa);  color: var(--rosa-esc); background: #FFF0F5; }
+
 @keyframes aparecer { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
 
-/* Grid de opções */
+/* ── OPÇÕES ── */
 .opcoes-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 4px;
+  gap: 10px; margin-bottom: 4px;
 }
-
 .opcao {
   background: #fff;
   border: 4px solid #E5E7EB;
   border-radius: 18px;
-  padding: 12px 8px;
-  text-align: center;
-  cursor: pointer;
-  transition: all .18s;
-  user-select: none;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 80px;
-  gap: 6px;
+  padding: 12px 8px; text-align: center;
+  cursor: pointer; transition: all .18s;
+  user-select: none; position: relative;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  min-height: 80px; gap: 6px;
 }
 .opcao:not(.travada):hover {
   transform: translateY(-4px) scale(1.02);
@@ -157,21 +148,16 @@ body {
 @keyframes pula  { 0%{transform:scale(1)} 40%{transform:scale(1.12)} 100%{transform:scale(1)} }
 @keyframes treme { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-7px)} 75%{transform:translateX(7px)} }
 
-/* Opção: imagem da placa */
 .opcao img {
-  width: 64px; height: 64px;
-  object-fit: contain;
+  width: 64px; height: 64px; object-fit: contain;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
 }
-
-/* Opção: texto grande */
 .opcao-txt-grande {
   font-family: 'Baloo 2', cursive;
   font-size: 16px; font-weight: 900;
-  color: var(--texto);
-  line-height: 1.3; text-align: center;
+  color: var(--texto); line-height: 1.3;
+  text-align: center; white-space: pre-line;
 }
-
 .opcao-badge {
   position: absolute; top: -8px; right: -8px;
   width: 26px; height: 26px; border-radius: 50%;
@@ -181,49 +167,96 @@ body {
 .badge-ok { background: var(--verde); color: #fff; }
 .badge-no { background: var(--rosa);  color: #fff; }
 
+/* ── BOTÃO PRÓXIMA ── */
 .btn-proxima {
   width: 100%; padding: 14px; border: none; border-radius: 16px;
   font-family: 'Baloo 2', cursive; font-size: 18px; font-weight: 900;
   cursor: pointer; background: #1A1A2E; color: var(--amarelo);
-  box-shadow: 0 5px 0 #000; transition: all .15s; display: none;
+  box-shadow: 0 5px 0 #000; transition: all .15s;
+  display: none; margin-top: 10px;
 }
 .btn-proxima.show { display: block; animation: aparecer .3s ease; }
 .btn-proxima:hover  { transform: translateY(-2px); }
 .btn-proxima:active { transform: translateY(4px); box-shadow: 0 1px 0 #000; }
 
-/* NOTA FINAL */
-.overlay-nota {
-  display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,.75); z-index: 300;
-  align-items: center; justify-content: center; padding: 20px;
+/* ══════════════════════════════════════
+   MODAL DE RESULTADO  (sem IDs duplicados)
+══════════════════════════════════════ */
+.modal-overlay {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.78);
+  z-index: 500;
+  align-items: center; justify-content: center;
+  padding: 20px;
 }
-.overlay-nota.show { display: flex; }
-.nota-box {
-  border-radius: 32px; padding: 34px 26px;
-  text-align: center; max-width: 350px; width: 100%;
+.modal-overlay.aberto { display: flex; }
+
+.modal-box {
+  border-radius: 32px;
+  padding: 34px 26px;
+  text-align: center;
+  max-width: 360px; width: 100%;
   animation: pop .5s cubic-bezier(.4,2,.6,1);
+  border: 5px solid;
 }
 @keyframes pop { from{opacity:0;transform:scale(.65)} to{opacity:1;transform:scale(1)} }
-.nota-estrelas { font-size: 38px; letter-spacing: 5px; margin-bottom: 8px; }
-.nota-titulo   { font-family: 'Baloo 2', cursive; font-size: 28px; font-weight: 900; margin-bottom: 6px; }
-.nota-circulo  {
+
+.modal-estrelas {
+  font-size: 36px; letter-spacing: 4px; margin-bottom: 6px;
+}
+.modal-titulo {
+  font-family: 'Baloo 2', cursive;
+  font-size: 28px; font-weight: 900;
+  color: #fff; margin-bottom: 10px;
+}
+.modal-circulo {
   width: 130px; height: 130px; border-radius: 50%;
-  margin: 10px auto; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; border: 6px solid;
+  margin: 0 auto 14px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  border: 6px solid;
 }
-.nota-num   { font-family: 'Baloo 2', cursive; font-size: 60px; font-weight: 900; line-height: 1; }
-.nota-den   { font-size: 18px; font-weight: 800; opacity: .6; color: #fff; }
-.nota-msg   { font-size: 14px; font-weight: 800; font-family: 'Nunito', sans-serif; margin: 10px 0 20px; line-height: 1.5; white-space: pre-line; }
-.btn-refazer {
-  border: none; border-radius: 16px; padding: 14px 28px;
-  font-family: 'Baloo 2', cursive; font-size: 18px; font-weight: 900;
-  cursor: pointer; width: 100%; transition: all .15s;
+.modal-nota-num {
+  font-family: 'Baloo 2', cursive;
+  font-size: 62px; font-weight: 900; line-height: 1;
 }
-.btn-refazer:hover { transform: translateY(-2px); }
+.modal-nota-den {
+  font-size: 18px; font-weight: 800; opacity: .65; color: #fff;
+}
+.modal-placar {
+  font-family: 'Baloo 2', cursive;
+  font-size: 16px; font-weight: 900;
+  margin-bottom: 10px; line-height: 1.8;
+}
+.modal-msg {
+  font-size: 14px; font-weight: 800;
+  font-family: 'Nunito', sans-serif;
+  margin-bottom: 22px; line-height: 1.5;
+}
+.modal-btn {
+  border: none; border-radius: 16px;
+  padding: 14px 28px;
+  font-family: 'Baloo 2', cursive;
+  font-size: 18px; font-weight: 900;
+  cursor: pointer; width: 100%;
+  transition: all .15s;
+}
+.modal-btn:hover  { transform: translateY(-2px); }
+.modal-btn:active { transform: translateY(2px); }
 
-.cp { position:fixed;top:-20px;border-radius:3px;opacity:0;animation:cai 2.5s ease-in forwards;z-index:400;pointer-events:none; }
-@keyframes cai { 0%{opacity:1;transform:translateY(0) rotate(0)} 100%{opacity:0;transform:translateY(100vh) rotate(720deg)} }
+/* ── CONFETES ── */
+.cp {
+  position: fixed; top: -20px; border-radius: 3px;
+  opacity: 0; animation: cai 2.5s ease-in forwards;
+  z-index: 600; pointer-events: none;
+}
+@keyframes cai {
+  0%   { opacity:1; transform: translateY(0) rotate(0deg); }
+  100% { opacity:0; transform: translateY(100vh) rotate(720deg); }
+}
 
+/* ── FOOTER ── */
 footer {
   background: #1A1A2E; color: #aaa;
   text-align: center; padding: 10px 20px;
@@ -240,6 +273,7 @@ footer span { color: var(--amarelo); }
 </head>
 <body>
 
+<!-- ── CABEÇALHO ── -->
 <div class="topo">
   <h1>🚦 PLACAS DE TRÂNSITO</h1>
   <div class="topo-sub">As placas também são uma linguagem!</div>
@@ -249,6 +283,7 @@ footer span { color: var(--amarelo); }
   <p>🚗 As placas de trânsito mandam mensagens sem usar palavras! Você sabe o que elas dizem?</p>
 </div>
 
+<!-- ── JOGO ── -->
 <div class="wrap">
   <div class="card-pergunta" id="card-pergunta">
     <div class="num-pergunta" id="num-pergunta">PERGUNTA 1 DE 10</div>
@@ -257,49 +292,34 @@ footer span { color: var(--amarelo); }
       <img id="img-placa" src="" alt="placa de trânsito">
     </div>
     <div class="pergunta-texto" id="pergunta-texto"></div>
-    <div class="feedback-box" id="feedback-box"></div>
+    <div class="feedback-box"  id="feedback-box"></div>
   </div>
 
   <div class="opcoes-grid" id="opcoes-grid"></div>
   <button class="btn-proxima" id="btn-proxima">PRÓXIMA ➜</button>
 </div>
 
-<footer>Material Pedagógico – <span>Profª Adriana Bett Terebinto</span></footer>
-
-<div class="overlay-nota" id="overlay-nota">
-  <div class="nota-box" id="nota-box">
-    <div class="nota-estrelas" id="nota-estrelas"></div>
-    <div class="nota-titulo"   id="nota-titulo"></div>
-    <div class="nota-circulo"  id="nota-circulo">
-      <span class="nota-num" id="nota-num"></span>
-      <span class="nota-den">/ 10</span>
+<!-- ── MODAL DE RESULTADO (único, sem duplicatas) ── -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal-box" id="modal-box">
+    <div class="modal-estrelas" id="modal-estrelas"></div>
+    <div class="modal-titulo"   id="modal-titulo"></div>
+    <div class="modal-circulo"  id="modal-circulo">
+      <span class="modal-nota-num" id="modal-nota-num"></span>
+      <span class="modal-nota-den">/ 10</span>
     </div>
-    <div class="nota-msg" id="nota-msg"></div>
-    <button class="btn-refazer" onclick="reiniciar()">🔄 JOGAR NOVAMENTE</button>
+    <div class="modal-placar" id="modal-placar"></div>
+    <div class="modal-msg"    id="modal-msg"></div>
+    <button class="modal-btn" id="modal-btn" onclick="reiniciar()">🔄 JOGAR NOVAMENTE</button>
   </div>
 </div>
 
+<footer>Material Pedagógico – <span>Profª Adriana Bett Terebinto</span></footer>
+
 <script>
-/*
-  BANCO DE PLACAS — links originais mantidos sem alteração.
-
-  Mapeamento real de cada URL:
-    pare       → placa PARE (octogonal vermelha)
-    proibido   → placa PROIBIDO ESTACIONAR (círculo vermelho com "E" cortado)
-    velocidade → placa VELOCIDADE MÁXIMA 40 km/h
-    pedestre   → placa de PASSAGEM DE PEDESTRES (faixa de zebra)
-    escola     → placa de ÁREA ESCOLAR (triângulo, duas crianças)
-    curva      → placa CURVA ACENTUADA À ESQUERDA (triângulo amarelo)
-    semaforo   → placa SEMÁFORO À FRENTE (triângulo com semáforo)
-    bicicleta  → placa PROIBIDO CIRCULAR DE BICICLETA
-    onibus     → placa PONTO DE PARADA DE ÔNIBUS
-    lombada    → placa SALIÊNCIA OU LOMBADA
-
-  tipo pergunta:
-    'img_para_txt' → mostra imagem da placa, resposta é texto
-    'txt_para_img' → mostra texto, resposta é escolher a imagem correta
-*/
-
+/* ══════════════════════════════════════
+   BANCO DE PLACAS
+══════════════════════════════════════ */
 const PLACAS = {
   pare:       'https://cdn.awsli.com.br/800x800/2755/2755133/produto/276152106/placa-pare-parada-obrigat-ria-r-1-8mutyhjh17.jpg',
   proibido:   'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276152241/placa-proibido-estacionar-r-6a-p97aenyqqz.jpg',
@@ -313,82 +333,57 @@ const PLACAS = {
   lombada:    'https://cdn.awsli.com.br/2500x2500/2755/2755133/produto/276189585/placa-sali-ncia-ou-lombada-com-seta-a-18-pra-esquerda-k864o23ia1.jpg',
 };
 
-/*
-  BANCO CORRIGIDO:
-  Cada entrada foi revisada para garantir que a imagem mostrada e as
-  opções de resposta sejam coerentes entre si.
-*/
 const BANCO = [
-
-  /* 1 ─ PARE */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.pare,
-    alt: 'Placa PARE vermelha octogonal',
+    tipo: 'img_para_txt', placa: PLACAS.pare, alt: 'Placa PARE vermelha octogonal',
     pergunta: 'O que essa placa manda fazer?',
     opcoes: [
-      { txt: 'PARE!',        ok: true  },
-      { txt: 'SIGA EM FRENTE', ok: false },
-      { txt: 'VÁ DEVAGAR',   ok: false },
-      { txt: 'DOBRE À DIREITA', ok: false },
+      { txt: 'PARE!',             ok: true  },
+      { txt: 'SIGA EM FRENTE',    ok: false },
+      { txt: 'VÁ DEVAGAR',        ok: false },
+      { txt: 'DOBRE À DIREITA',   ok: false },
     ],
     fbOk: '✅ Certo! A placa PARE manda o motorista parar completamente antes de cruzar!',
-    fbNo: '❌ Errou! Essa é a placa PARE — o motorista precisa parar completamente.',
+    fbNo:  '❌ Errou! Essa é a placa PARE — o motorista precisa parar completamente.',
   },
-
-  /* 2 ─ PROIBIDO ESTACIONAR */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.proibido,
-    alt: 'Placa proibido estacionar',
+    tipo: 'img_para_txt', placa: PLACAS.proibido, alt: 'Placa proibido estacionar',
     pergunta: 'O que essa placa proíbe?',
     opcoes: [
-      { txt: 'PROIBIDO ESTACIONAR', ok: true  },
-      { txt: 'PROIBIDO VIRAR',      ok: false },
-      { txt: 'PROIBIDO ENTRAR',     ok: false },
+      { txt: 'PROIBIDO ESTACIONAR',  ok: true  },
+      { txt: 'PROIBIDO VIRAR',       ok: false },
+      { txt: 'PROIBIDO ENTRAR',      ok: false },
       { txt: 'PROIBIDO ULTRAPASSAR', ok: false },
     ],
     fbOk: '✅ Isso! Essa placa significa PROIBIDO ESTACIONAR neste local!',
-    fbNo: '❌ Não! Essa placa significa PROIBIDO ESTACIONAR.',
+    fbNo:  '❌ Não! Essa placa significa PROIBIDO ESTACIONAR.',
   },
-
-  /* 3 ─ VELOCIDADE MÁXIMA */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.velocidade,
-    alt: 'Placa de velocidade máxima 40 km/h',
+    tipo: 'img_para_txt', placa: PLACAS.velocidade, alt: 'Placa de velocidade máxima 40 km/h',
     pergunta: 'O que o número nessa placa indica?',
     opcoes: [
-      { txt: 'VELOCIDADE MÍNIMA',   ok: false },
+      { txt: 'VELOCIDADE MÍNIMA',          ok: false },
       { txt: 'VELOCIDADE MÁXIMA\n40 KM/H', ok: true  },
-      { txt: 'NÚMERO DA RUA',       ok: false },
-      { txt: 'DISTÂNCIA ATÉ A CIDADE', ok: false },
+      { txt: 'NÚMERO DA RUA',              ok: false },
+      { txt: 'DISTÂNCIA ATÉ A CIDADE',     ok: false },
     ],
     fbOk: '✅ Perfeito! O número na placa mostra a velocidade máxima permitida neste trecho!',
-    fbNo: '❌ Errou! Essa placa diz que o limite de velocidade é 40 km/h.',
+    fbNo:  '❌ Errou! Essa placa diz que o limite de velocidade é 40 km/h.',
   },
-
-  /* 4 ─ PASSAGEM DE PEDESTRES */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.pedestre,
-    alt: 'Placa de passagem de pedestres',
+    tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: 'Placa de passagem de pedestres',
     pergunta: 'O que essa placa avisa ao motorista?',
     opcoes: [
-      { txt: 'CUIDADO COM ANIMAIS', ok: false },
+      { txt: 'CUIDADO COM ANIMAIS',           ok: false },
       { txt: 'FAIXA DE PEDESTRES\nà frente!', ok: true  },
-      { txt: 'PROIBIDO ANDAR A PÉ', ok: false },
-      { txt: 'ESTACIONAMENTO',      ok: false },
+      { txt: 'PROIBIDO ANDAR A PÉ',           ok: false },
+      { txt: 'ESTACIONAMENTO',                ok: false },
     ],
-    fbOk: '✅ Isso mesmo! Essa placa avisa que há uma faixa de pedestres à frente — cuidado!',
-    fbNo: '❌ Essa placa avisa que há uma faixa de pedestres à frente.',
+    fbOk: '✅ Isso mesmo! Essa placa avisa que há uma faixa de pedestres à frente!',
+    fbNo:  '❌ Essa placa avisa que há uma faixa de pedestres à frente.',
   },
-
-  /* 5 ─ ÁREA ESCOLAR */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.escola,
-    alt: 'Placa de área escolar — crianças',
+    tipo: 'img_para_txt', placa: PLACAS.escola, alt: 'Placa de área escolar',
     pergunta: 'Por que os motoristas precisam ir devagar aqui?',
     opcoes: [
       { txt: 'TEM UM HOSPITAL PERTO', ok: false },
@@ -397,14 +392,10 @@ const BANCO = [
       { txt: 'TEM UM SEMÁFORO PERTO', ok: false },
     ],
     fbOk: '✅ Certo! Tem uma escola perto — os motoristas devem reduzir a velocidade!',
-    fbNo: '❌ Essa placa indica que há uma escola próxima — é preciso ir devagar!',
+    fbNo:  '❌ Essa placa indica que há uma escola próxima — é preciso ir devagar!',
   },
-
-  /* 6 ─ CURVA ACENTUADA */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.curva,
-    alt: 'Placa de curva acentuada à esquerda',
+    tipo: 'img_para_txt', placa: PLACAS.curva, alt: 'Placa de curva acentuada à esquerda',
     pergunta: 'O que essa placa avisa sobre a estrada?',
     opcoes: [
       { txt: 'ESTRADA RETA',           ok: false },
@@ -413,74 +404,61 @@ const BANCO = [
       { txt: 'FIM DA PISTA',           ok: false },
     ],
     fbOk: '✅ Isso! A placa avisa que tem uma curva acentuada à frente — cuidado!',
-    fbNo: '❌ Essa placa avisa que tem uma curva acentuada na estrada.',
+    fbNo:  '❌ Essa placa avisa que tem uma curva acentuada na estrada.',
   },
-
-  /* 7 ─ SEMÁFORO À FRENTE */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.semaforo,
-    alt: 'Placa de semáforo à frente',
+    tipo: 'img_para_txt', placa: PLACAS.semaforo, alt: 'Placa de semáforo à frente',
     pergunta: 'O que o motorista vai encontrar mais à frente?',
     opcoes: [
-      { txt: 'UMA LOMBADA',        ok: false },
-      { txt: 'UM SEMÁFORO',        ok: true  },
-      { txt: 'UMA CURVA FECHADA',  ok: false },
-      { txt: 'UMA ESCOLA',         ok: false },
+      { txt: 'UMA LOMBADA',       ok: false },
+      { txt: 'UM SEMÁFORO',       ok: true  },
+      { txt: 'UMA CURVA FECHADA', ok: false },
+      { txt: 'UMA ESCOLA',        ok: false },
     ],
     fbOk: '✅ Perfeito! Essa placa avisa que tem um semáforo mais à frente!',
-    fbNo: '❌ Essa placa avisa que há um semáforo à frente.',
+    fbNo:  '❌ Essa placa avisa que há um semáforo à frente.',
   },
-
-  /* 8 ─ PROIBIDO BICICLETA */
   {
-    tipo: 'img_para_txt',
-    placa: PLACAS.bicicleta,
-    alt: 'Placa proibido circular de bicicleta',
+    tipo: 'img_para_txt', placa: PLACAS.bicicleta, alt: 'Placa proibido circular de bicicleta',
     pergunta: 'O que essa placa proíbe nesta via?',
     opcoes: [
-      { txt: 'CARROS',              ok: false },
-      { txt: 'PEDESTRES',           ok: false },
-      { txt: 'BICICLETAS',          ok: true  },
-      { txt: 'MOTOS',               ok: false },
+      { txt: 'CARROS',     ok: false },
+      { txt: 'PEDESTRES',  ok: false },
+      { txt: 'BICICLETAS', ok: true  },
+      { txt: 'MOTOS',      ok: false },
     ],
     fbOk: '✅ Certo! Nessa via bicicletas não podem circular!',
-    fbNo: '❌ Essa placa significa proibido circular de bicicleta nesta via.',
+    fbNo:  '❌ Essa placa significa proibido circular de bicicleta nesta via.',
   },
-
-  /* 9 ─ txt→img: qual é a placa de PARE? */
   {
-    tipo: 'txt_para_img',
-    placa: null,
-    alt: '',
+    tipo: 'txt_para_img', placa: null, alt: '',
     pergunta: '🔍 Qual dessas é a placa de PARE?',
     opcoes: [
-      { img: PLACAS.pare,       alt: 'Placa octogonal PARE',      ok: true  },
-      { img: PLACAS.proibido,   alt: 'Placa proibido estacionar', ok: false },
-      { img: PLACAS.velocidade, alt: 'Placa velocidade máxima',   ok: false },
-      { img: PLACAS.lombada,    alt: 'Placa lombada',             ok: false },
+      { img: PLACAS.pare,       alt: 'Placa PARE',             ok: true  },
+      { img: PLACAS.proibido,   alt: 'Placa proibido estac.',  ok: false },
+      { img: PLACAS.velocidade, alt: 'Placa velocidade máx.',  ok: false },
+      { img: PLACAS.lombada,    alt: 'Placa lombada',          ok: false },
     ],
     fbOk: '✅ Isso mesmo! A placa vermelha octogonal (8 lados) é o PARE!',
-    fbNo: '❌ A placa de PARE é a vermelha com formato de oito lados (octógono)!',
+    fbNo:  '❌ A placa de PARE é a vermelha com formato de oito lados (octógono)!',
   },
-
-  /* 10 ─ txt→img: qual avisa sobre ESCOLA? */
   {
-    tipo: 'txt_para_img',
-    placa: null,
-    alt: '',
+    tipo: 'txt_para_img', placa: null, alt: '',
     pergunta: '🔍 Qual placa avisa que tem uma ESCOLA perto?',
     opcoes: [
-      { img: PLACAS.pedestre, alt: 'Placa faixa de pedestres', ok: false },
-      { img: PLACAS.curva,    alt: 'Placa curva',              ok: false },
-      { img: PLACAS.escola,   alt: 'Placa área escolar',       ok: true  },
-      { img: PLACAS.semaforo, alt: 'Placa semáforo',           ok: false },
+      { img: PLACAS.pedestre, alt: 'Placa faixa pedestres', ok: false },
+      { img: PLACAS.curva,    alt: 'Placa curva',           ok: false },
+      { img: PLACAS.escola,   alt: 'Placa área escolar',    ok: true  },
+      { img: PLACAS.semaforo, alt: 'Placa semáforo',        ok: false },
     ],
     fbOk: '✅ Perfeito! Essa placa mostra duas crianças e avisa que tem uma escola perto!',
-    fbNo: '❌ A placa de escola mostra duas crianças caminhando — é um triângulo amarelo.',
+    fbNo:  '❌ A placa de escola mostra duas crianças caminhando — é um triângulo amarelo.',
   },
 ];
 
+/* ══════════════════════════════════════
+   ESTADO DO JOGO
+══════════════════════════════════════ */
 let perguntas = [], atual = 0, certos = 0, erros = 0, travado = false;
 
 function embaralhar(a) {
@@ -492,12 +470,14 @@ function embaralhar(a) {
   return r;
 }
 
+/* ── INICIAR ── */
 function iniciar() {
   perguntas = embaralhar(BANCO);
   atual = 0; certos = 0; erros = 0; travado = false;
   renderPergunta();
 }
 
+/* ── RENDER PERGUNTA ── */
 function renderPergunta() {
   const q = perguntas[atual];
   travado = false;
@@ -509,6 +489,7 @@ function renderPergunta() {
   fb.className = 'feedback-box';
   fb.textContent = '';
 
+  // Recria botão para limpar listeners
   const btnAntigo = document.getElementById('btn-proxima');
   const btnNovo = btnAntigo.cloneNode(true);
   btnAntigo.parentNode.replaceChild(btnNovo, btnAntigo);
@@ -520,18 +501,16 @@ function renderPergunta() {
   const label    = document.getElementById('pergunta-label');
 
   if (q.tipo === 'img_para_txt') {
-    /* mostra imagem da placa + pergunta em texto */
-    label.textContent = '🚦 O QUE ESSA PLACA DIZ?';
-    wrap.style.display = 'flex';
-    imgPlaca.src = q.placa;
-    imgPlaca.alt = q.alt;
-    pTexto.textContent = q.pergunta;
+    label.textContent    = '🚦 O QUE ESSA PLACA DIZ?';
+    wrap.style.display   = 'flex';
+    imgPlaca.src         = q.placa;
+    imgPlaca.alt         = q.alt;
+    pTexto.textContent   = q.pergunta;
   } else {
-    /* mostra apenas a pergunta em texto; respostas são imagens */
-    label.textContent = '🔍 ENCONTRE A PLACA CERTA!';
-    wrap.style.display = 'none';
-    imgPlaca.src = '';
-    pTexto.textContent = q.pergunta;
+    label.textContent    = '🔍 ENCONTRE A PLACA CERTA!';
+    wrap.style.display   = 'none';
+    imgPlaca.src         = '';
+    pTexto.textContent   = q.pergunta;
   }
 
   const grid = document.getElementById('opcoes-grid');
@@ -542,16 +521,13 @@ function renderPergunta() {
     div.className = 'opcao';
 
     if (q.tipo === 'img_para_txt') {
-      /* resposta = texto */
       const span = document.createElement('span');
-      span.className = 'opcao-txt-grande';
+      span.className   = 'opcao-txt-grande';
       span.textContent = op.txt;
       div.appendChild(span);
     } else {
-      /* resposta = imagem da placa */
       const img = document.createElement('img');
-      img.src = op.img;
-      img.alt = op.alt;
+      img.src = op.img; img.alt = op.alt;
       div.appendChild(img);
     }
 
@@ -560,6 +536,7 @@ function renderPergunta() {
   });
 }
 
+/* ── RESPONDER ── */
 function responder(el, op, q) {
   if (travado) return;
   travado = true;
@@ -572,13 +549,12 @@ function responder(el, op, q) {
     el.classList.add('certa');
     adicionarBadge(el, true);
     fb.textContent = q.fbOk;
-    fb.className = 'feedback-box show ok';
+    fb.className   = 'feedback-box show ok';
   } else {
     erros++;
     el.classList.add('errada');
     adicionarBadge(el, false);
 
-    /* destaca a resposta correta */
     document.querySelectorAll('.opcao').forEach(o => {
       if (q.tipo === 'img_para_txt') {
         const t = o.querySelector('.opcao-txt-grande');
@@ -590,12 +566,13 @@ function responder(el, op, q) {
     });
 
     fb.textContent = q.fbNo;
-    fb.className = 'feedback-box show no';
+    fb.className   = 'feedback-box show no';
   }
 
-  const btn = document.getElementById('btn-proxima');
+  const btn    = document.getElementById('btn-proxima');
   const novoBtn = btn.cloneNode(true);
   btn.parentNode.replaceChild(novoBtn, btn);
+
   if (atual + 1 >= perguntas.length) {
     novoBtn.textContent = '🏁 VER MEU RESULTADO!';
     novoBtn.addEventListener('click', mostrarNota);
@@ -608,73 +585,101 @@ function responder(el, op, q) {
 
 function adicionarBadge(el, ok) {
   const b = document.createElement('div');
-  b.className = 'opcao-badge ' + (ok ? 'badge-ok' : 'badge-no');
+  b.className   = 'opcao-badge ' + (ok ? 'badge-ok' : 'badge-no');
   b.textContent = ok ? '✓' : '✗';
   el.appendChild(b);
 }
-
 function marcarCerta(o) {
   o.classList.add('certa');
   adicionarBadge(o, true);
 }
-
 function proxima() {
   atual++;
   renderPergunta();
   window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* ── MOSTRAR NOTA (modal colorido) ── */
 function mostrarNota() {
-  const nota = certos; // 10 perguntas → cada acerto vale 1 ponto, nota de 0 a 10
+  const nota = certos;
+
   const cfgs = [
-    { min:10,max:10, e:'⭐⭐⭐⭐⭐', t:'PERFEITO! 🏆',   bg:'#064E3B', br:'#10B981', cb:'#065F46', nc:'#6EE7B7', bb:'#10B981', bs:'#047857', mc:'#A7F3D0', m:'Você acertou tudo! Já conhece as placas como um especialista!' },
-    { min:8, max:9,  e:'⭐⭐⭐⭐',   t:'MUITO BEM! 🎉',  bg:'#1E3A5F', br:'#1A7ABF', cb:'#0D5A94', nc:'#BAE6FD', bb:'#1A7ABF', bs:'#0D5A94', mc:'#BAE6FD', m:'Quase tudo certo! Você entendeu bem as placas!' },
-    { min:6, max:7,  e:'⭐⭐⭐',     t:'PARABÉNS! 😊',   bg:'#451A03', br:'#F97316', cb:'#7C2D12', nc:'#FED7AA', bb:'#F97316', bs:'#C2410C', mc:'#FED7AA', m:'Boa tentativa! Pratique mais para tirar 10!' },
-    { min:0, max:5,  e:'⭐⭐',       t:'TENTE MAIS! 💪', bg:'#4C1D95', br:'#7C3AED', cb:'#3B0764', nc:'#DDD6FE', bb:'#7C3AED', bs:'#5B21B6', mc:'#DDD6FE', m:'Continue praticando! Você vai aprender as placas!' },
+    { min:10, max:10, e:'⭐⭐⭐⭐⭐', t:'PERFEITO! 🏆',
+      bg:'#064E3B', br:'#10B981', cb:'#065F46', nc:'#6EE7B7',
+      bb:'#10B981', bs:'#047857', mc:'#D1FAE5',
+      m:'Você acertou tudo! Já conhece as placas como um especialista!' },
+    { min:8,  max:9,  e:'⭐⭐⭐⭐',   t:'MUITO BEM! 🎉',
+      bg:'#1E3A5F', br:'#38BDF8', cb:'#0D5A94', nc:'#BAE6FD',
+      bb:'#38BDF8', bs:'#0369A1', mc:'#E0F2FE',
+      m:'Quase tudo certo! Você entendeu bem as placas!' },
+    { min:6,  max:7,  e:'⭐⭐⭐',     t:'PARABÉNS! 😊',
+      bg:'#451A03', br:'#FB923C', cb:'#7C2D12', nc:'#FED7AA',
+      bb:'#FB923C', bs:'#C2410C', mc:'#FFEDD5',
+      m:'Boa tentativa! Pratique mais para tirar 10!' },
+    { min:0,  max:5,  e:'⭐⭐',       t:'TENTE MAIS! 💪',
+      bg:'#2E1065', br:'#A78BFA', cb:'#4C1D95', nc:'#EDE9FE',
+      bb:'#A78BFA', bs:'#6D28D9', mc:'#EDE9FE',
+      m:'Continue praticando! Você vai aprender todas as placas!' },
   ];
-  const cfg = cfgs.find(c => nota >= c.min && nota <= c.max) || cfgs[3];
+  const c = cfgs.find(x => nota >= x.min && nota <= x.max) || cfgs[3];
 
-  const box  = document.getElementById('nota-box');
-  const circ = document.getElementById('nota-circulo');
-  const nNum = document.getElementById('nota-num');
+  // Aplica estilos dinâmicos
+  const box  = document.getElementById('modal-box');
+  box.style.background = c.bg;
+  box.style.borderColor = c.br;
 
-  box.style.cssText  = `background:${cfg.bg};border-radius:32px;padding:34px 26px;text-align:center;max-width:350px;width:100%;animation:pop .5s cubic-bezier(.4,2,.6,1);border:5px solid ${cfg.br};`;
-  circ.style.cssText = `width:130px;height:130px;border-radius:50%;margin:10px auto;display:flex;flex-direction:column;align-items:center;justify-content:center;border:6px solid ${cfg.br};background:${cfg.cb};`;
-  nNum.style.color   = cfg.nc;
-  nNum.textContent   = nota;
+  const circ = document.getElementById('modal-circulo');
+  circ.style.background  = c.cb;
+  circ.style.borderColor = c.br;
 
-  document.getElementById('nota-estrelas').textContent = cfg.e;
-  const tEl = document.getElementById('nota-titulo');
-  tEl.textContent = cfg.t; tEl.style.color = '#fff';
+  const nNum = document.getElementById('modal-nota-num');
+  nNum.style.color  = c.nc;
+  nNum.textContent  = nota;
 
-  const mEl = document.getElementById('nota-msg');
-  mEl.textContent = cfg.m + `\n\n✅ Acertos: ${certos}/${perguntas.length}   ❌ Erros: ${erros}`;
-  mEl.style.color = cfg.mc;
+  document.getElementById('modal-estrelas').textContent = c.e;
+  document.getElementById('modal-titulo').textContent   = c.t;
 
-  const btn = document.getElementById('btn-refazer');
-  btn.style.cssText = `background:${cfg.bb};color:#fff;border:none;border-radius:16px;padding:14px 28px;font-family:'Baloo 2',cursive;font-size:18px;font-weight:900;cursor:pointer;width:100%;box-shadow:0 4px 0 ${cfg.bs};transition:all .15s;`;
+  const placar = document.getElementById('modal-placar');
+  placar.style.color   = c.mc;
+  placar.innerHTML     = `✅ Acertos: ${certos} &nbsp;|&nbsp; ❌ Erros: ${erros}`;
 
-  document.getElementById('overlay-nota').classList.add('show');
+  const msg = document.getElementById('modal-msg');
+  msg.style.color  = c.mc;
+  msg.textContent  = c.m;
+
+  const btn = document.getElementById('modal-btn');
+  btn.style.background = c.bb;
+  btn.style.color      = '#fff';
+  btn.style.boxShadow  = `0 4px 0 ${c.bs}`;
+
+  // Abre o modal
+  const overlay = document.getElementById('modal-overlay');
+  overlay.classList.add('aberto');
+
+  // Confetes para nota boa
   if (nota >= 7) confetti();
 }
 
+/* ── REINICIAR ── */
 function reiniciar() {
-  document.getElementById('overlay-nota').classList.remove('show');
+  document.getElementById('modal-overlay').classList.remove('aberto');
   iniciar();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
+/* ── CONFETES ── */
 function confetti() {
   const cores = ['#F72585','#FFD93D','#06D6A0','#118AB2','#7B2FBE','#FF6B35'];
   for (let i = 0; i < 70; i++) {
     setTimeout(() => {
       const c = document.createElement('div');
       c.className = 'cp';
-      c.style.left             = Math.random() * 100 + 'vw';
-      c.style.background       = cores[Math.floor(Math.random() * cores.length)];
-      c.style.width            = (Math.random() * 8 + 5) + 'px';
-      c.style.height           = (Math.random() * 10 + 7) + 'px';
+      c.style.left              = Math.random() * 100 + 'vw';
+      c.style.background        = cores[Math.floor(Math.random() * cores.length)];
+      c.style.width             = (Math.random() * 8 + 5)  + 'px';
+      c.style.height            = (Math.random() * 10 + 7) + 'px';
       c.style.animationDuration = (Math.random() * 1.5 + 1.5) + 's';
-      c.style.borderRadius     = Math.random() > .5 ? '50%' : '3px';
+      c.style.borderRadius      = Math.random() > .5 ? '50%' : '3px';
       document.body.appendChild(c);
       setTimeout(() => c.remove(), 3000);
     }, i * 45);
