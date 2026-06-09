@@ -287,7 +287,7 @@ footer span { color: var(--amarelo); }
 <div class="wrap">
   <div class="card-pergunta" id="card-pergunta">
     <div class="num-pergunta" id="num-pergunta">PERGUNTA 1 DE 10</div>
-    <span class="pergunta-label" id="pergunta-label">🚦 O QUE ESSA PLACA DIZ?</span>
+    <span class="pergunta-label" id="pergunta-label"> O QUE ESSA PLACA DIZ?</span>
     <div class="placa-img-wrap" id="placa-img-wrap">
       <img id="img-placa" src="" alt="placa de trânsito">
     </div>
@@ -374,8 +374,8 @@ const BANCO = [
     tipo: 'img_para_txt', placa: PLACAS.pedestre, alt: '',
     pergunta: 'O QUE ESSA PLACA AVISA',
     opcoes: [
-      { txt: 'CUIDADO COM ANIMAIS',           ok: false },
-      { txt: 'FAIXA DE PEDESTRES', ok: true  },
+      { txt: 'CUIDADO',           ok: false },
+      { txt: 'PEDESTRES', ok: true  },
       { txt: 'PROIBIDO',           ok: false },
       { txt: 'ESTACIONAMENTO',                ok: false },
     ],
@@ -403,8 +403,8 @@ const BANCO = [
       { txt: 'PODE ULTRAPASSAR',       ok: false },
       { txt: 'FIM DA PISTA',           ok: false },
     ],
-    fbOk: '✅ Isso! A placa avisa que tem uma curva acentuada à frente — cuidado!',
-    fbNo:  '❌ Essa placa avisa que tem uma curva acentuada na estrada.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
     tipo: 'img_para_txt', placa: PLACAS.semaforo, alt: 'Placa de semáforo à frente',
@@ -415,11 +415,11 @@ const BANCO = [
       { txt: 'UMA CURVA FECHADA', ok: false },
       { txt: 'UMA ESCOLA',        ok: false },
     ],
-    fbOk: '✅ Perfeito! Essa placa avisa que tem um semáforo mais à frente!',
-    fbNo:  '❌ Essa placa avisa que há um semáforo à frente.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
-    tipo: 'img_para_txt', placa: PLACAS.bicicleta, alt: 'Placa proibido circular de bicicleta',
+    tipo: 'img_para_txt', placa: PLACAS.bicicleta, alt: '',
     pergunta: 'O que essa placa proíbe nesta via?',
     opcoes: [
       { txt: 'CARROS',     ok: false },
@@ -427,32 +427,32 @@ const BANCO = [
       { txt: 'BICICLETAS', ok: true  },
       { txt: 'MOTOS',      ok: false },
     ],
-    fbOk: '✅ Certo! Nessa via bicicletas não podem circular!',
-    fbNo:  '❌ Essa placa significa proibido circular de bicicleta nesta via.',
+    fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
     tipo: 'txt_para_img', placa: null, alt: '',
     pergunta: '🔍 Qual dessas é a placa de PARE?',
     opcoes: [
-      { img: PLACAS.pare,       alt: 'Placa PARE',             ok: true  },
-      { img: PLACAS.proibido,   alt: 'Placa proibido estac.',  ok: false },
-      { img: PLACAS.velocidade, alt: 'Placa velocidade máx.',  ok: false },
-      { img: PLACAS.lombada,    alt: 'Placa lombada',          ok: false },
+      { img: PLACAS.pare,       alt: 'PARE',             ok: true  },
+      { img: PLACAS.proibido,   alt: ' PEDESTRE.',  ok: false },
+      { img: PLACAS.velocidade, alt: 'VELOCIDADE',  ok: false },
+      { img: PLACAS.lombada,    alt: 'LOMBADA',          ok: false },
     ],
-    fbOk: '✅ Isso mesmo! A placa vermelha octogonal (8 lados) é o PARE!',
-    fbNo:  '❌ A placa de PARE é a vermelha com formato de oito lados (octógono)!',
+   fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
   {
     tipo: 'txt_para_img', placa: null, alt: '',
     pergunta: '🔍 Qual placa avisa que tem uma ESCOLA perto?',
     opcoes: [
-      { img: PLACAS.pedestre, alt: 'Placa faixa pedestres', ok: false },
-      { img: PLACAS.curva,    alt: 'Placa curva',           ok: false },
-      { img: PLACAS.escola,   alt: 'Placa área escolar',    ok: true  },
-      { img: PLACAS.semaforo, alt: 'Placa semáforo',        ok: false },
+      { img: PLACAS.pedestre, alt: 'PEDESTRE', ok: false },
+      { img: PLACAS.curva,    alt: 'CURCA',           ok: false },
+      { img: PLACAS.escola,   alt: 'ESCOLA',    ok: true  },
+      { img: PLACAS.semaforo, alt: 'SEMÁFORO',        ok: false },
     ],
-    fbOk: '✅ Perfeito! Essa placa mostra duas crianças e avisa que tem uma escola perto!',
-    fbNo:  '❌ A placa de escola mostra duas crianças caminhando — é um triângulo amarelo.',
+ fbOk: '✅ CERTO!',
+    fbNo:  '❌ ERROU! ',
   },
 ];
 
